@@ -10,6 +10,7 @@ import {
     Box,
     Alert,
 } from '@mui/material'
+import axios from 'axios';
 
 function CreateContact({ open, onClose, onCreateSuccess }) {
     const [error, setError] = useState("");
@@ -32,7 +33,8 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
         evt.preventDefault();
         try {
             await axios.post("http://localhost:3000/contacts", formData);
-            alert("Contact created succefully")
+            onCreateSuccess(); 
+            onClose(); 
         } catch (err) {
             setError("Error creating contact")
         }
@@ -46,7 +48,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                         {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
 
-                            <label htmlFor="firstName" class="label">firstName</label>
+                            <label htmlFor="firstName" className="label">firstName</label>
                             <TextField
                                 placeholder='firstName'
                                 value={formData.firstName}
@@ -55,7 +57,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                                 id="firstName"
                                 variant="outlined"
                             />
-                            <label htmlFor="lastName" class="label">lastName</label>
+                            <label htmlFor="lastName" className="label">lastName</label>
                             <TextField
                                 placeholder='lastName'
                                 value={formData.lastName}
@@ -64,7 +66,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                                 id="lastName"
                                 variant="outlined"
                             />
-                            <label htmlFor="email" class="label">Email</label>
+                            <label htmlFor="email" className="label">Email</label>
                             <TextField type="email"
                                 placeholder='Email'
                                 value={formData.email}
@@ -72,7 +74,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                                 name="email"
                                 id='email'
                             />
-                            <label htmlFor="phone" class="label">phone</label>
+                            <label htmlFor="phone" className="label">phone</label>
                             <TextField type="phone"
                                 placeholder='phone'
                                 value={formData.phone}
@@ -80,7 +82,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                                 name="phone"
                                 id="phone"
                             />
-                            <label htmlFor="company" class="label">company</label>
+                            <label htmlFor="company" className="label">company</label>
                             <TextField type="company"
                                 placeholder='company'
                                 value={formData.company}
@@ -88,7 +90,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                                 name="company"
                                 id="company"
                             />
-                            <label htmlFor="jobTitle" class="label">jobTitle</label>
+                            <label htmlFor="jobTitle" className="label">jobTitle</label>
                             <TextField type="jobTitle"
                                 placeholder='jobTitle'
                                 value={formData.jobTitle}
@@ -100,7 +102,7 @@ function CreateContact({ open, onClose, onCreateSuccess }) {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={onClose}>Cancel</Button>
-                        <Button variant="contained" id="button">Create contact</Button>
+                        <Button variant="contained" id="button" type="submit">Create contact</Button>
 
                     </DialogActions>
                 </form>

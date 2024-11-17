@@ -32,7 +32,7 @@ function Contacts() {
             const response = await axios.get('http://localhost:3000/contacts');
             setContacts(response.data);
             setLoading(false);
-            setError(""); // Clear any previous errors
+            setError(""); 
         }
         catch (err) {
             setError("Failed to fetch contacts");
@@ -45,7 +45,7 @@ function Contacts() {
     }, []);
 
     const handleCreateSuccess = () => {
-        fetchContacts(); // Refresh the contacts list
+        fetchContacts(); 
         setIsCreateDialogOpen(false);
     };
 
@@ -62,7 +62,7 @@ function Contacts() {
 
     const handleDeleteClick = (contact) => {
         setContactToDelete(contact);
-        setDeleteDialogOpen(true); // Open confirmation dialog instead of immediate deletion
+        setDeleteDialogOpen(true); 
     };
 
     const handleDelete = async () => {
@@ -111,7 +111,7 @@ function Contacts() {
                 contactData={selectedContact}
             />
 
-            {/* Add confirmation dialog for delete */}
+            
             {deleteDialogOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-4 rounded-lg">

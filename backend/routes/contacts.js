@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ message: "Invalid format" })
     }
     try {
-        const existingContact = await Contacts.find({ $or:[{email},{phone}] })
+        const existingContact = await Contacts.findOne({ $or:[{email},{phone}] })
         if (existingContact) {
             return res.status(404).json({ message: "Contact already exists" })
         }
